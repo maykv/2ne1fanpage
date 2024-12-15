@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2NE1 Fan Homepage</title>
+    <style>
+        /* 기본 스타일 */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: black;
+            color: white;
+        }
+
+        /* 금속 질감을 위한 스타일 */
+        .metallic {
+            background: linear-gradient(135deg, #d9d9d9, #a6a6a6, #d9d9d9);
+            background-size: 400% 400%;
+            animation: metallic-shine 3s infinite;
+            color: black;
+            text-shadow: 0 0 3px #f0f0f0;
+        }
+
+        @keyframes metallic-shine {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* 헤더 스타일 */
+        header {
+            background: linear-gradient(to right, silver, black);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: hotpink;
+            text-shadow: 0 0 10px red, 0 0 20px silver;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: red;
+        }
+
+        /* 히어로 섹션 스타일 */
+        .hero {
+            background: linear-gradient(to bottom, darkred, black);
+            color: hotpink;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px hotpink;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+        }
+
+        .hero .cta {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: silver;
+            color: black;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .hero .cta:hover {
+            background: red;
+            color: white;
+        }
+
+        /* 멤버 섹션 */
+        .members {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            background: black;
+            padding: 50px 20px;
+        }
+
+        .member-card {
+            background: linear-gradient(to bottom, silver, black);
+            color: white;
+            border-radius: 10px;
+            width: 200px;
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .member-card:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px red, 0 0 30px silver;
+        }
+
+        /* 푸터 */
+        footer {
+            background: linear-gradient(to right, black, darkred);
+            text-align: center;
+            padding: 20px;
+            color: silver;
+        }
+
+        footer a {
+            color: hotpink;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- 헤더 -->
+    <header>
+        <h1 class="metallic">2NE1</h1>
+        <nav>
+            <a href="#">홈</a>
+            <a href="#members">멤버 소개</a>
+            <a href="#albums">앨범</a>
+            <a href="#videos">영상</a>
+            <a href="#gallery">갤러리</a>
+            <a href="#board">팬 게시판</a>
+        </nav>
+    </header>
+
+    <!-- 히어로 섹션 -->
+    <section class="hero">
+        <h2>The Legend of 2NE1</h2>
+        <p>댄스, 힙합, 레게, 록, R&B, 일렉트로닉 장르를 아우르는 전설의 걸그룹!</p>
+        <a href="#" class="cta">지금 확인하기</a>
+    </section>
+
+    <!-- 멤버 섹션 -->
+    <section id="members" class="members">
+        <div class="member-card metallic">
+            <h3>CL</h3>
+            <p>리더 & 래퍼</p>
+        </div>
+        <div class="member-card metallic">
+            <h3>Bom</h3>
+            <p>보컬</p>
+        </div>
+        <div class="member-card metallic">
+            <h3>Dara</h3>
+            <p>보컬 & 비주얼</p>
+        </div>
+        <div class="member-card metallic">
+            <h3>Minzy</h3>
+            <p>댄서 & 보컬</p>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer>
+        <p>&copy; 2024 2NE1 Fanpage. All rights reserved.</p>
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">YouTube</a>
+    </footer>
+</body>
+</html>

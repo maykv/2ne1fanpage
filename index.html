@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2NE1 Fan Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000;
+            color: #fff;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #111;
+            box-shadow: 0 2px 4px rgba(255,20,147,0.1);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff1493;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff1493;
+        }
+
+        /* Members Section */
+        .members {
+            margin-top: 100px;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            background-color: #111;
+        }
+
+        .member {
+            text-align: center;
+            padding: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .member:hover {
+            transform: translateY(-5px);
+        }
+
+        .member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ff1493;
+        }
+
+        .member .name {
+            margin-top: 1rem;
+            font-weight: bold;
+            color: #ff1493;
+        }
+
+        .member .birth {
+            color: #888;
+            font-size: 0.9em;
+            margin-top: 0.5rem;
+        }
+
+        /* Albums Section */
+        .albums {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #000;
+        }
+
+        .albums-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+        }
+
+        .album {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+
+        .album img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .album-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 20, 147, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .album:hover .album-overlay {
+            opacity: 1;
+        }
+
+        .album-name {
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        /* Schedule Section */
+        .schedule {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #111;
+            border-radius: 8px;
+        }
+
+        .schedule-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid #333;
+        }
+
+        .schedule-date {
+            font-weight: bold;
+            color: #ff1493;
+        }
+
+        h2 {
+            color: #ff1493;
+            margin-bottom: 1rem;
+            font-size: 1.5em;
+        }
+
+        .section-container {
+            background-color: #111;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="#albums">ALBUMS</a>
+                <a href="#news">NEWS</a>
+                <a href="#photos">PHOTOS</a>
+            </div>
+            <div class="logo">2NE1</div>
+            <div class="nav-links">
+                <a href="#videos">VIDEOS</a>
+                <a href="#schedule">SCHEDULE</a>
+                <a href="#shop">SHOP</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="members">
+        <div class="member">
+            <img src="./member/10001.png" alt="CL">
+            <div class="name">CL</div>
+            <div class="birth">1991.02.26</div>
+        </div>
+        <div class="member">
+            <img src="./member/10002.png" alt="Park Bom">
+            <div class="name">PARK BOM</div>
+            <div class="birth">1984.03.24</div>
+        </div>
+        <div class="member">
+            <img src="./member/10003.png" alt="Sandara Park">
+            <div class="name">SANDARA PARK</div>
+            <div class="birth">1984.11.12</div>
+        </div>
+        <div class="member">
+            <img src="./member/10004.png" alt="Minzy">
+            <div class="name">MINZY</div>
+            <div class="birth">1994.01.18</div>
+        </div>
+    </section>
+
+    <div class="section-container">
+        <section class="albums">
+            <h2>DISCOGRAPHY</h2>
+            <div class="albums-grid" id="albums-grid"></div>
+        </section>
+    </div>
+
+    <section class="schedule">
+        <h2>UPCOMING SCHEDULE</h2>
+        <div id="schedule-list"></div>
+    </section>
+
+    <script>
+        // Album Data
+        const albums = [
+            { name: "Fire", image: "https://image.bugsm.co.kr/album/images/170/1834/183461.jpg", date: "2009.05.06" },
+            { name: "2NE1 First Mini Album", image: "https://image.bugsm.co.kr/album/images/170/1901/190115.jpg", date: "2009.07.01" },
+            { name: "I Don't Care (Reggae Mix)", image: "https://image.bugsm.co.kr/album/images/170/1974/197401.jpg", date: "2009.09.03" },
+            { name: "날 따라 해봐요", image: "https://image.bugsm.co.kr/album/images/170/2373/237329.jpg", date: "2010.02.09" },
+            { name: "To Anyone", image: "https://image.bugsm.co.kr/album/images/170/2373/237329.jpg", date: "2010.09.09" },
+            { name: "Lonely", image: "https://image.bugsm.co.kr/album/images/170/2828/282889.jpg", date: "2011.05.12" },
+            { name: "내가 제일 잘 나가", image: "https://image.bugsm.co.kr/album/images/170/2912/291231.jpg", date: "2011.06.24" },
+            { name: "2NE1 2nd Mini Album", image: "https://image.bugsm.co.kr/album/images/170/2942/294235.jpg", date: "2011.07.28" },
+            { name: "I Love You", image: "https://image.bugsm.co.kr/album/images/170/3343/334306.jpg", date: "2012.07.05" },
+            { name: "Falling In Love", image: "https://image.bugsm.co.kr/album/images/170/3772/377214.jpg", date: "2013.07.08" },
+            { name: "Do You Love Me", image: "https://image.bugsm.co.kr/album/images/170/3822/382253.jpg", date: "2013.08.07" },
+            { name: "그리워해요", image: "https://image.bugsm.co.kr/album/images/170/3980/398013.jpg", date: "2013.11.21" },
+            { name: "CRUSH", image: "https://image.bugsm.co.kr/album/images/170/4160/416068.jpg", date: "2014.02.27" },
+            { name: "안녕", image: "https://image.bugsm.co.kr/album/images/170/200786/20078666.jpg", date: "2017.01.21" }
+        ];
+
+        // Schedule Data
+        const schedules = [
+            { date: "2024.12.21", event: "2024-25 2NE1 CONCERT [WELCOME BACK] in Singapore", location: "싱가포르 실내체육관" },
+            { date: "2024.12.22", event: "2024-25 2NE1 CONCERT [WELCOME BACK] in Singapore", location: "싱가포르 실내체육관" },
+            { date: "2024.12.25", event: "2024 SBS 가요대전: Merry Music", location: "인스파이어 아레나" },
+            { date: "2025.01.25", event: "2024-25 2NE1 CONCERT [WELCOME BACK] in Bangkok", location: "Impact Arena" },
+            { date: "2025.01.26", event: "2024-25 2NE1 CONCERT [WELCOME BACK] in Bangkok", location: "Impact Arena" },
+            { date: "2025.02.01", event: "2024-25 2NE1 CONCERT [WELCOME BACK] in Kuala Lumpur", location: "" },
+            { date: "2025.02.08.", event: "2024-25 2NE1 CONCERT [WELCOME BACK] in Taipei", location: "NTSU Arena" },
+            { date: "2025.02.09.", event: "2024-25 2NE1 CONCERT [WELCOME BACK] in Taipei", location: "NTSU Arena" },
+            { date: "2025.02.18.", event: "2024-25 2NE1 CONCERT [WELCOME BACK] in Hochimin", location: "" },
+            { date: "2025.02.19.", event: "2024-25 2NE1 CONCERT [WELCOME BACK] in Hochimin", location: "" },
+            { date: "2025.02.22.", event: "2024-25 2NE1 CONCERT [WELCOME BACK] in Makao", location: "" },
+            { date: "2025.02.23.", event: "2024-25 2NE1 CONCERT [WELCOME BACK] in Makao", location: "" },
+            { date: "TBD", event: "2024-25 2NE1 CONCERT [WELCOME BACK] in Seoul", location: "" },
+        ];
+
+        // Render Albums
+        const albumsGrid = document.getElementById('albums-grid');
+        albums.forEach(album => {
+            const albumElement = document.createElement('div');
+            albumElement.className = 'album';
+            albumElement.innerHTML = `
+                <img src="${album.image}" alt="${album.name}">
+                <div class="album-overlay">
+                    <div class="album-name">
+                        <div>${album.name}</div>
+                        <div style="font-size: 0.8em; margin-top: 0.5em">${album.date}</div>
+                    </div>
+                </div>
+            `;
+            albumsGrid.appendChild(albumElement);
+        });
+
+        // Render Schedule
+        const scheduleList = document.getElementById('schedule-list');
+        schedules.forEach(schedule => {
+            const scheduleElement = document.createElement('div');
+            scheduleElement.className = 'schedule-item';
+            scheduleElement.innerHTML = `
+                <span class="schedule-date">${schedule.date}</span>
+                <span>${schedule.event}</span>
+                <span>${schedule.location}</span>
+            `;
+            scheduleList.appendChild(scheduleElement);
+        });
+    </script>
+</body>
+</html>
